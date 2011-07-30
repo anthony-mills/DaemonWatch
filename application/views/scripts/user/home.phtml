@@ -1,0 +1,45 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Home</h2>
+
+	</div>
+
+	<div class="block_content">
+		<?php if (!empty($this->userSummary)) { ?>
+			<table>
+				<thead>
+					<tr>
+						<th>Host #</th>
+						<th>Active Services #</th>
+						<th>Avg Connect Time</th>
+						<th>Service Availability</th>
+						<th>Service Downtime</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<th><?= $this->userSummary['hosts']; ?></th>
+						<th><?= $this->userSummary['services']; ?></th>
+						<th><?= $this->userSummary['avg_latency']; ?> ms</th>
+						<th><?= $this->userSummary['up_percent']; ?> %</th>
+						<th><?= $this->userSummary['down_percent']; ?> %</th>													
+					</tr>
+				</tbody>	
+			</table>
+			
+		<?php } else { ?>
+			<p>Unable to show summary.</p>
+		<?php } ?>
+	</div>		
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+	
+</div>	

@@ -1,0 +1,57 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Stored Services</h2>
+
+	</div>
+
+	<div class="block_content">
+		<?php if (!empty($this->hostServices)) { ?>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Port</th>
+					<th>Frequency</th>	
+					<th>Actions</th>						
+				</tr>
+				
+				<? foreach($this->hostServices as $hostServices) { ?>
+					<tr>
+						<td><?= $hostServices['name']; ?></td>
+						<td><?= $hostServices['port']; ?></td>
+						<td>
+							<? if ($hostServices['active'] == 1) { ?>
+								<?= ($hostServices['frequency'] / 60); ?> mins
+							<? } else { ?>
+								Paused
+							<? } ?>
+						</td>				
+						<td>
+							<a href="<?= $this->baseUrl(); ?>/services/delete/serviceId/<?= $hostServices['id']; ?>/hostId/<?= $hostServices['host_id']; ?>" rel="facebox">Delete</a> - 
+							<a href="<?= $this->baseUrl(); ?>/services/edit/serviceId/<?= $hostServices['id']; ?>/hostId/<?= $hostServices['host_id']; ?>">Edit</a> - 
+							<a href="<?= $this->baseUrl(); ?>/services/view-history/serviceId/<?= $hostServices['id']; ?>/hostId/<?= $hostServices['host_id']; ?>">View History</a>	- 
+							<? if ($hostServices['active'] == 1) { ?>
+								<a href="<?= $this->baseUrl(); ?>/services/toggle-checks/serviceId/<?= $hostServices['id']; ?>/hostId/<?= $hostServices['host_id']; ?>/status/1" rel="facebox">Pause Checks</a>
+							<? } else { ?>
+								<a href="<?= $this->baseUrl(); ?>/services/toggle-checks/serviceId/<?= $hostServices['id']; ?>/hostId/<?= $hostServices['host_id']; ?>/status/0" rel="facebox">Resume Checks</a>
+							<? } ?>											
+						</td>				
+					</tr>
+				<? } ?>
+				
+			</table>
+			
+		<?php } else { ?>
+			<p>No saved services to display.</p>
+		<?php } ?>
+	</div>		
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+	
+</div>		

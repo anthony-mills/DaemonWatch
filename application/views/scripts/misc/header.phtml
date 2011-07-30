@@ -1,0 +1,63 @@
+<div id="header">
+	<div class="hdrl">
+	</div>
+	<div class="hdrr">
+	</div>
+
+	<h1>
+	<a href="<?= $this->baseUrl(); ?>/user/home">Daemon Watch</a>
+	</h1>
+
+	<ul id="nav">
+		<li>
+			<a href="<?= $this->baseUrl(); ?>/user/home">Home</a>
+		</li>
+		
+		<li>
+			<a href="#">Hosts</a>
+			<ul>
+				<li>
+					<a href="<?= $this->baseUrl(); ?>/host/add">Add</a>
+				</li>
+				
+				<li>
+					<a href="<?= $this->baseUrl(); ?>/host/view-all">View</a>
+				</li>
+			</ul>
+		</li>
+
+		<li>
+			<a href="#">Account</a>
+			<ul>
+				<li>
+					<a href="<?= $this->baseUrl(); ?>/user/change-password">Change Password</a>
+				</li>
+				
+				<li>
+					<a href="<?= $this->baseUrl(); ?>/auth/logout">Logout</a>
+				</li>
+			</ul>			
+		</li>
+		
+		<? $userRole = Zend_Registry::get('userRole'); ?>
+		<? if ($userRole === 'admin') { ?>
+				<li>
+					<a href="#">Admin</a>
+					<ul>
+						<li>
+							<a href="<?= $this->baseUrl(); ?>/admin/create-user">Create User</a>
+						</li>
+						
+						<li>
+							<a href="<?= $this->baseUrl(); ?>/admin/view-users">View Users</a>
+						</li>
+					</ul>			
+				</li>			
+		<? } ?>
+	</ul>
+
+	<p class="user">
+		Logged in as <?= Zend_Registry::get('user_name'); ?> |
+		<a href="<?= $this->baseUrl(); ?>/auth/logout">Logout</a>
+	</p>
+</div>	

@@ -1,0 +1,93 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Create New User</h2>
+	</div>
+
+	<div class="block_content">
+		<?= $this->render('misc/show_errors.phtml'); ?>
+		
+		<form method="post" id="addHostForm">
+			<div id="twoColumnContainer">
+				<div id="twoColumnLeftColumn">
+					<p>
+						<label for="first_name">
+							First Name*
+						</label>
+						<br>
+						<input type="text" name="first_name" autocomplete="off" value="<?= $this->formData['first_name']; ?>" class="text required" placeholder="first name of user"> 
+				
+					</p>
+				
+					<p>
+						<label for="last_name">
+							Last Name *
+						</label>
+						<br>		
+						<input type="text" name="last_name" autocomplete="off" value="<?= $this->formData['last_name']; ?>" class="required text" placeholder="last name of user">
+					</p>
+						
+					<p>
+						<label for="email">
+							Email *
+						</label>
+						<br>		
+						<input type="text" name="email" autocomplete="off" value="<?= $this->formData['email']; ?>" class="required text email" placeholder="email address">
+					</p>
+										
+					<p>
+						<label for="user_role">
+							User Role*
+						</label>
+						<br>
+
+						<select name="serviceFrequency" class="styled" style="opacity: 0; position: relative; z-index: 100;">
+							<? foreach($this->userRoles as $userRole) { ?>
+										<option value="<?= $userRole['id']; ?>"><?= $userRole['value']; ?></option>
+							<? } ?>
+						</select> 
+					</p>
+				</div>
+
+				<div id="twoColumnRightColumn">
+					<p>
+						<label for="host_limit">
+							Host Limit
+						</label>
+						<br>		
+						<input type="text" name="host_limit" autocomplete="off" value="<?= $this->formData['host_limit']; ?>" class="required text numeric" placeholder="max number of hosts">
+					</p>
+				
+					<p>
+						<label for="service_limit">
+							Service Limit
+						</label>
+						<br>		
+						<input type="text" name="service_limit" autocomplete="off" value="<?= $this->formData['service_limit']; ?>" class="required text numeric" placeholder="max number of services">
+					</p>
+						
+					<p>
+						<label for="sms_credits">
+							SMS Credits
+						</label>
+						<br>		
+						<input type="text" name="sms_credits" autocomplete="off" value="<?= $this->formData['sms_credits']; ?>" class="required text numeric" placeholder="sms credits available">
+					</p>
+					<br>
+					<input type="submit" value="Create User" class="submit long">
+				</div>
+			</div> 
+										
+		</form>
+
+	</div>
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>			

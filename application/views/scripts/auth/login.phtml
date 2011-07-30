@@ -1,0 +1,43 @@
+<div class="block small center login">
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Daemon Watch - Login</h2>
+	</div>
+
+	<div class="block_content">
+		<?=	$this -> render('misc/show_errors.phtml');?>
+
+		<form method="post" id="userLoginForm">
+			<p>
+				<label for="userEmail">
+					Email *
+				</label>
+				<br>
+				<input type="text" name="email" autocomplete="off" placeholder="email address" class="required text">
+			</p>
+			
+			<p>
+				<label for="password">
+					Password *
+				</label>
+				<br>
+				<input type="password" name="password" autocomplete="off" placeholder="password" class="required text">
+			</p>
+
+			<p>
+				<input class="submit" type="submit" value="Login">				
+				<a href="<?=$this -> baseUrl();?>/auth/reset-password">Forgotten your password?</a>				
+			</p>
+
+		</form>
+	</div>
+
+	<div class="bendl">
+	</div>
+	<div class="bendr">
+	</div>
+</div>

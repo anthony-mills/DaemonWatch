@@ -1,0 +1,42 @@
+<div class="block small center login">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Edit Host</h2>
+	</div>
+
+	<div class="block_content">
+		<?= $this->render('misc/show_errors.phtml'); ?>
+		
+		<form method="post">
+			<p>
+				<label for="name">
+					Name *
+				</label><br>
+			
+				<input type="text" name="name" autocomplete="off" value="<?= $this->formData['name']; ?>" class="text required"> 
+			</p>
+			
+			<p>
+				<label for="hostName">
+					Hostname or IP *
+				</label><br>
+			
+				<input type="text" name="hostName" autocomplete="off" value="<?= $this->formData['hostName']; ?>" class="text required">		
+			</p>		
+			
+			<div align="center">
+				<input type="submit" value="Update Host" class="submit long">
+			</div>
+		
+		</form>
+	</div>
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>				

@@ -1,0 +1,49 @@
+<?php
+class Acidgreen_Log_UserActions
+{
+    /**
+     *
+     * @var Zend_Log
+     */
+    protected $logger;
+
+    static $dbLogger = null;
+
+    /**
+     *
+     * @return Acidgreen_Log_UserActions
+     */
+    public static function getInstance()
+    {
+        if (self::$dbLogger === null)
+        {
+            self::$dbLogger = new self();
+        }
+        return self::$dbLogger;
+    }
+    /**
+     *
+     * @return Zend_Log
+     */
+    public function getLog()
+    {
+        return $this->logger;
+    }
+
+    protected function __construct()
+    {
+        $this->logger = Zend_Registry::get('userActionsLog');
+    }
+    
+    /**
+     *
+     * @param String $message
+     * @param Zend_Log $severity
+     */
+
+    public static function log($message, $severity = Zend_Log::INFO)
+    {
+//        self::getInstance()->getLog()
+        self::getInstance()->getLog()->log($message, $severity);
+    }
+}

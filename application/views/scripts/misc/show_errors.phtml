@@ -1,0 +1,15 @@
+<div id="errorMsg">
+	<?php
+		if (!empty($this->errors)) {
+			foreach($this->errors as $fieldError) {
+				if (is_array($fieldError)) {
+					foreach($fieldError as $error) {
+						echo '<p>' . $error . '</p>';
+					}
+				} else {
+					echo '<p>' . $fieldError . '</p>';				
+				}
+			}	
+		}
+	?>
+</div>

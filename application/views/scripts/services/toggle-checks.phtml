@@ -1,0 +1,17 @@
+<? if ($this->serviceDetails['currentStatus'] == 0) { ?> 
+	<p>Are you certain you would like resume checks of this service?</p>
+	
+	<div align="center">
+		<a href="<?= $this->baseUrl(); ?>/services/toggle-checks/serviceId/<?= $this->serviceDetails['serviceId'];  ?>/hostId/<?= $this->serviceDetails['hostId']; ?>/newstatus/active/">Yes</a> 
+		/ 
+		<a href="<?= $this->baseUrl(); ?>/services/view/hostId/<?= $this->serviceDetails['hostId']; ?>/">No</a>
+	</div>
+<? } else { ?> 
+	<p>Are you certain you would like pause checks of this service?</p>
+	
+	<div align="center">
+		<a href="<?= $this->baseUrl(); ?>/services/toggle-checks/serviceId/<?= $this->serviceDetails['serviceId'];  ?>/hostId/<?= $this->serviceDetails['hostId']; ?>/newstatus/pause/">Yes</a> 
+		/ 
+		<a href="<?= $this->baseUrl(); ?>/services/view/hostId/<?= $this->serviceDetails['hostId']; ?>/">No</a>
+	</div>	
+<? } ?>

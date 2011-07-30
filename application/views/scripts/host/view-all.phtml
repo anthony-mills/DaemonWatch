@@ -1,0 +1,56 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Stored Hosts</h2>
+
+	</div>
+
+	<div class="block_content">
+
+		<?php if (!empty($this->userHosts)) { ?>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Hostname / IP</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<? $x = 1; ?>
+					<? foreach($this->userHosts as $userHost) { ?>
+						<? if ($x==1) { ?>
+								<? $x++; ?>
+								<tr class="odd">
+						<? } else { ?>
+								<? $x--; ?>
+								<tr class="even">
+						<? } ?>
+							<td><?= $userHost['name']; ?></td>
+							<td><?= $userHost['hostname']; ?></td>
+							<td>
+								<a href="<?= $this->baseUrl(); ?>/host/delete/hostId/<?= $userHost['id']; ?>" rel="facebox">Delete</a> - 
+								<a href="<?= $this->baseUrl(); ?>/host/edit/hostId/<?= $userHost['id']; ?>">Edit</a> - 
+								<a href="<?= $this->baseUrl(); ?>/services/add/hostId/<?= $userHost['id']; ?>">Add Service</a>	-
+								<a href="<?= $this->baseUrl(); ?>/services/view/hostId/<?= $userHost['id']; ?>">View Services</a>					
+							</td>				
+						</tr>
+					<? } ?>
+				</tbody>	
+			</table>
+			
+		<?php } else { ?>
+			<p>No saved hosts to display.</p>
+		<?php } ?>
+	</div>		
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+	
+</div>			

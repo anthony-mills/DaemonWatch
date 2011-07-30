@@ -1,0 +1,79 @@
+<div class="block small center login">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Edit Service</h2>
+	</div>
+
+	<div class="block_content">
+
+		<?= $this->render('misc/show_errors.phtml'); ?>
+		
+		<form method="post" id="editServiceForm">
+			<p>
+				<label for="name">
+					Name *
+				</label>
+				<br>
+				<input type="text" name="name" autocomplete="off" value="<?= $this->formData['name']; ?>" class="text required"> 
+			</p>
+			
+			<p>
+				<label for="servicePort">
+					Port *
+				</label>
+				<br>
+				<input type="text" name="port" autocomplete="off" value="<?= $this->formData['port']; ?>" class="text digits" max="65535">
+			</p>		
+		
+			<p>
+				<label for="sms">
+					 SMS Notification
+				</label>
+				<? if (!empty($this->formData['sms'])) { ?>
+					<input type="checkbox" name="sms" class="checkbox" checked>
+				<? } else { ?>
+					<input type="checkbox" name="sms" class="checkbox">					
+				<? } ?>				
+			</p>	
+			
+			<p>
+				<label for="serviceFrequency">
+					Check Frequency *
+				</label>
+				<br>
+				<select name="frequency" class="styled" style="opacity: 0; position: relative; z-index: 100;">
+						<? if ($this->formData['frequency']) { ?>
+							<? $minutes = ($this->formData['frequency'] / 60); ?>
+							<option value="<?= $this->formData['frequency']; ?>"><?= $minutes; ?> min</option>	
+						<? } ?>
+						<option value="60">1 min</option>
+						<option value="120">2 min</option>
+						<option value="180">3 min</option>
+						<option value="240">4 min</option>	
+						<option value="300">5 min</option>	
+						<option value="600">10 min</option>	
+						<option value="900">15 min</option>
+						<option value="1200">20 min</option>
+						<option value="1500">25 min</option>
+						<option value="1800">30 min</option>
+						<option value="3600">60 min</option>
+						<option value="7200">120 min</option>
+				</select>			
+			</p>
+			
+			<div align="center">
+				<input type="submit" value="Update Service" class="submit long">
+			</div>
+		
+		</form>
+	</div>
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		
