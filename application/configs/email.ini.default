@@ -1,0 +1,20 @@
+[production]
+email.support = no-reply@serverwatch.com
+name.support = 'Serverwatch'
+email.noreply = no-reply@serverwatch.com
+name.noreply = 'No-Reply'
+
+settings.server     = mail.mailserver.com
+settings.username   = myusername
+settings.password   = 'password'
+settings.ssl        = 
+settings.port       = 25
+
+[staging : production]
+
+[testing : production]
+
+
+[development : production]
+
+
