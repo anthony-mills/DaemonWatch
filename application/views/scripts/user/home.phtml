@@ -12,7 +12,7 @@
 
 	<div class="block_content">
 		<?php if (!empty($this->userSummary)) { ?>
-			<table>
+			<table class="list">
 				<thead>
 					<tr>
 						<th>Host #</th>
@@ -37,6 +37,63 @@
 		<?php } else { ?>
 			<p>Unable to show summary.</p>
 		<?php } ?>
+		<br />	
+		<script type="text/javascript">
+		window.onload = function() {
+			$(document).ready(function(){
+			  var graphData = [];
+			  <?php
+					$xData = '';
+					$latencyGraphData = '';
+					$x = 0;
+					foreach ($this->latencyGraphData as $latencyGraphData) {
+						$x++;
+						if (!empty($latencyGraphData['timeTaken'])) {
+							echo 'graphData.push([' . $x . ',' . $latencyGraphData['timeTaken'] . ']);';
+						}
+					}
+			  ?>								
+			  var plot1 = $.jqplot('latencyGraphHolder', [graphData], {  
+			      series:[{showMarker:false}],
+			      title: 'Service Latency Over Time', 
+			      axes:{
+			        xaxis:{
+			          label:'Service checks',
+			          labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+			        },
+			        yaxis:{
+			          label:'Latency (Milliseconds)',
+			          labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+			        }
+			      }
+			  });
+			});	
+			
+			<?php
+				echo  "var plot2 = $.jqplot('uptimeGraphHolder', [[['Downtime Detected',".$this->uptimeGraphData['serviceDown']."],['Services Up',".$this->uptimeGraphData['serviceUp']."]]], {\r\n";
+			?>
+			      title: 'Host Uptime',
+			      seriesColors: [ "#f30909", "#1fe028"],
+			      seriesDefaults: {
+			        renderer: jQuery.jqplot.PieRenderer,
+			        rendererOptions: {
+			          showDataLabels: true
+			        }
+			      },
+			        legend:{
+			            show:true
+			        } 
+		    });			
+		};		
+		</script>
+		
+		<div id="latencyGraphHolder"></div>
+		
+		<div class="clear"></div>
+		
+		<br />
+		
+		<div id="uptimeGraphHolder" style="width:500px; height:400px;"></div>
 	</div>		
 
 	<div class="bendl"></div>

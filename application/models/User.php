@@ -27,8 +27,8 @@ class Model_User {
 			$avgLatency = round(( $totalLatency / $serviceChecks->count() ), 2);
 		}
 		$userSummary = array('hosts' => $userHosts->count(), 'services' => $userServices->count(), 'avg_latency' => $avgLatency,
-							 'up_percent' => $this->_calculatePercentage($totalUp, $serviceChecks->count()),
-							 'down_percent' => $this->_calculatePercentage($totalDown, $serviceChecks->count()));
+							 'up_percent' => Model_Factory::getHostStatisticsModel()->calculatePercentage($totalUp, $serviceChecks->count()),
+							 'down_percent' => Model_Factory::getHostStatisticsModel()->calculatePercentage($totalDown, $serviceChecks->count()));
 		return $userSummary;
 	}
 	
@@ -54,8 +54,8 @@ class Model_User {
 					}
 				}
 				$serviceData[] = array('name' => $serviceHost->name, 'port' => $serviceHost->port, 
-									   'up_percent' => $this->_calculatePercentage($totalUp, $serviceChecks->count()),
-									   'down_percent' => $this->_calculatePercentage($totalDown, $serviceChecks->count()),
+									   'up_percent' => Model_Factory::getHostStatisticsModel()->calculatePercentage($totalUp, $serviceChecks->count()),
+									   'down_percent' => Model_Factory::getHostStatisticsModel()->calculatePercentage($totalDown, $serviceChecks->count()),
 									   	'avg_latency' => round(($totalLatency / $serviceChecks->count()), 1));
 			}
 			if (!empty($serviceHosts)) {
@@ -69,9 +69,6 @@ class Model_User {
 		return $hostData;		
 	}
 	
-	protected function _calculatePercentage($number, $total)
-	{
-		return round($number * 100 / $total);
-	}
+
 }
 	

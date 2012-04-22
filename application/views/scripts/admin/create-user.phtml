@@ -46,9 +46,11 @@
 						</label>
 						<br>
 
-						<select name="serviceFrequency" class="styled" style="opacity: 0; position: relative; z-index: 100;">
+						<select name="user_role" class="styled" style="opacity: 0; position: relative; z-index: 100;">
 							<? foreach($this->userRoles as $userRole) { ?>
-										<option value="<?= $userRole['id']; ?>"><?= $userRole['value']; ?></option>
+										<option value="<?= $userRole['id']; ?>">
+											<?= $userRole['value']; ?>
+										</option>
 							<? } ?>
 						</select> 
 					</p>
@@ -60,7 +62,7 @@
 							Host Limit
 						</label>
 						<br>		
-						<input type="text" name="host_limit" autocomplete="off" value="<?= $this->formData['host_limit']; ?>" class="required text numeric" placeholder="max number of hosts">
+						<input type="text" name="max_hosts" autocomplete="off" value="<?= $this->formData['max_hosts']; ?>" class="required text numeric" placeholder="max number of hosts">
 					</p>
 				
 					<p>
@@ -68,7 +70,7 @@
 							Service Limit
 						</label>
 						<br>		
-						<input type="text" name="service_limit" autocomplete="off" value="<?= $this->formData['service_limit']; ?>" class="required text numeric" placeholder="max number of services">
+						<input type="text" name="max_services" autocomplete="off" value="<?= $this->formData['max_services']; ?>" class="required text numeric" placeholder="max number of services">
 					</p>
 						
 					<p>

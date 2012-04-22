@@ -19,7 +19,7 @@ class Model_DbTable_Services extends Zend_Db_Table_Abstract {
 		return $this->fetchAll($select);						
 	}
 	
-	public function getServicesByHost($hostId, $userId)
+	public function getServicesByHost($hostId, $userId = NULL)
 	{
 		$select = $this->select()
 					   ->where($this->getAdapter()->quoteInto('host_id = ?', $hostId));
@@ -29,10 +29,15 @@ class Model_DbTable_Services extends Zend_Db_Table_Abstract {
 		return $this->fetchAll($select);						
 	}	
 	
-	public function getActiveServices()
+	public function getActiveServices($hostId = NULL)
 	{
 		$select = $this->select()
-					   ->where($this->getAdapter()->quoteInto('active = ?', 1));		   
+					   ->where($this->getAdapter()->quoteInto('active = ?', 1));
+					   
+		if (!empty($hostId)) {
+			$select->where($this->getAdapter()->quoteInto('host_id = ?', $hostId));
+		}	
+			   
 		return $this->fetchAll($select);		
 	}
 	

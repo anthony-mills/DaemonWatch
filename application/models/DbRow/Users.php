@@ -52,6 +52,12 @@ class Model_DbRow_Users extends Zend_Db_Table_Abstract {
 		} 
 		return FALSE;
 	}
+	
+	public function addNewUser($userData)
+	{
+		return $this->insert($userData);
+	}	
+		
 }
 
 	

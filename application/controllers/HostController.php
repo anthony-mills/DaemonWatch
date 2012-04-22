@@ -109,4 +109,5 @@ class HostController extends Zend_Controller_Action
 		$this->view->js = array('validate.js', 'handlers/hosts/edit.js');		
 	}
 
+
 }

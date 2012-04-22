@@ -26,6 +26,7 @@ class Model_Acl_Library extends Zend_Acl {
         $this->add(new Zend_Acl_Resource('host'));		
         $this->add(new Zend_Acl_Resource('admin'));
         $this->add(new Zend_Acl_Resource('services'));
+        $this->add(new Zend_Acl_Resource('statistics'));		
         $this->add(new Zend_Acl_Resource('check-hosts'));		
     }
 
@@ -37,12 +38,14 @@ class Model_Acl_Library extends Zend_Acl {
                 ->allow('guests', 'error')
 				->allow('users', 'user', array('home', 'change-password', 'index', 'view-all'))
 				->allow('users', 'host', array('add', 'view', 'edit', 'delete'))
-				->allow('users', 'services', array('add', 'view', 'edit', 'history', 'delete', 'toggle-checks'))												
+				->allow('users', 'services', array('add', 'view', 'edit', 'view-history', 'delete', 'toggle-checks'))	
+				->allow('users', 'statistics', array('service-stats'))															
 				->allow('users', 'auth', array('logout'))
 				->allow('admin', 'user', array('home', 'change-password', 'index'))
 				->allow('admin', 'host', array('add', 'view', 'edit', 'view-all', 'delete'))	
-				->allow('admin', 'services', array('add', 'view', 'edit', 'history', 'delete', 'toggle-checks'))
-				->allow('admin', 'check-hosts', array('check-all-services'))															
+				->allow('admin', 'services', array('add', 'view', 'edit', 'view-history', 'delete', 'toggle-checks'))
+				->allow('admin', 'check-hosts', array('check-all-services'))
+				->allow('admin', 'statistics', array('service-stats'))	
 				->allow('admin', 'admin', array('home', 'create-user'));					
     }
 

@@ -21,6 +21,8 @@ class Model_DbRow_Services extends Zend_Db_Table_Abstract {
 		if (!empty($userId)) {
 			$select = $select->where($this->getAdapter()->quoteInto('user_id = ?', $userId));
 		}
+		$select->order('checked DESC');
+		
 		return $this->fetchRow($select);			
 	}
 	
@@ -73,7 +75,6 @@ class Model_DbRow_Services extends Zend_Db_Table_Abstract {
 		$this->update($serviceData, $where);		
 	}
 	
-
 }
 
 	

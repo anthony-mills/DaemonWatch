@@ -1,5 +1,8 @@
 /* Custom fonts */
+@import url('reset.css')
 @import url("../fonts/titillium/stylesheet.css");
+@import url("jquery.jqplot.css");
+
 
 * { padding:0; margin:0; }
 	
@@ -409,7 +412,7 @@ a:hover {
 	margin-bottom: 5px;
 	}
 	
-.block table {
+.block.table {
 	text-align: left;
 	margin-bottom: 15px;
 	width: 100%;
@@ -419,7 +422,6 @@ a:hover {
 	background: #fbfbfb;
 	}
 	
-.block table tr td,
 .block table tr th {
 	border-bottom: 1px solid #ddd;
 	padding: 10px;
@@ -1021,4 +1023,33 @@ a:hover {
 #twoColumnRightColumn {
 	width:500px;
 	float: right;
+}
+
+.tdHeading {
+	font-weight: bold;
+	text-align: right;	
+	padding: 2px 2px 2px 2px;
+}
+
+.tdContent {
+	text-align: left;
+	padding: 2px 2px 2px 2px;	
+}
+
+/** Start placeholder attribute text styling **/
+input::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+input:-moz-placeholder {
+    color: #aaa;
+}
+
+.placeholder {
+	color: #aaa;
+}
+/** End placeholder attribute text styling **/
+	
+table.list {
+	width: 100%;
 }

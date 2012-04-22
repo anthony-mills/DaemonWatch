@@ -128,6 +128,18 @@ class ServicesController extends Zend_Controller_Action
 		$this->view->js = array('validate.js', 'select_skin.js', 'html5_placeholders.js', 'facebox.js', 'handlers/services/edit.js');		
 	}
 
+	public function viewHistoryAction()
+	{
+		$serviceId =  $this->_request->getParam("serviceId");
+		$hostId =  $this->_request->getParam("hostId");
+		if ((!$hostId) || (!$serviceId)) {
+			$this->_redirect('user/home');
+			exit; 			
+		} 
+		$this->view->serviceId = $serviceId;
+		
+	}
+
 	private function _checkParameter($parameter = NULL)
 	{
 		if ((empty($parameter)) && (!is_numeric($parameter))) {

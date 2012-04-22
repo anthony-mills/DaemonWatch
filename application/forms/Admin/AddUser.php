@@ -33,7 +33,7 @@ class Form_Admin_AddUSer extends Zend_Form {
 	}
 
 	protected function _getHostLimitElement() {
-		$element = new Zend_Form_Element_Text('host_limit');
+		$element = new Zend_Form_Element_Text('max_hosts');
 		$element -> setLabel('Host Limit') -> addValidator('StringLength', false, array(1, 10));
 		$element = $this -> _addGenericFilter($element);
 
@@ -41,7 +41,7 @@ class Form_Admin_AddUSer extends Zend_Form {
 	}
 
 	protected function _getServiceLimitElement() {
-		$element = new Zend_Form_Element_Text('service_limit');
+		$element = new Zend_Form_Element_Text('max_services');
 		$element -> setLabel('Service Limit') -> addValidator('StringLength', false, array(1, 10));
 		$element = $this -> _addGenericFilter($element);
 

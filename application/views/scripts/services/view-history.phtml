@@ -1,0 +1,115 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl">
+		</div>
+		<div class="bheadr">
+		</div>
+
+		<h2>Service History</h2>
+
+	</div>
+
+	<div class="block_content">
+		Reported period - <a href="<?= $this->baseUrl(); ?>/statistics/service-stats/service/<?= $this->serviceId ?>/period/1/">24 hours</a> |  
+						 <a href="<?= $this->baseUrl(); ?>/statistics/service-stats/service/<?= $this->serviceId ?>/period/7/">7 Days</a> |
+						 <a href="<?= $this->baseUrl(); ?>/statistics/service-stats/service/<?= $this->serviceId ?>/period/14/">14 Days</a> |	
+						 <a href="<?= $this->baseUrl(); ?>/statistics/service-stats/service/<?= $this->serviceId ?>/period/30/">30 Days</a>
+						 
+		<br />
+		
+		<!-- Start report content -->
+		<div id="reportContent">						 					  
+				<table cellpadding="0" cellspacing="0" >
+					<tbody>
+						<tr>
+							<td class="tdHeading">Service name:</td>
+							<td class="tdContent"><?= $this->serviceInformation['service_name']; ?></td>
+							
+							<td class="tdHeading">Service port:</td>
+							<td class="tdContent"><?= $this->serviceInformation['service_port']; ?></td>		
+		
+							<td class="tdHeading">Service added:</td>
+							<td class="tdContent"><?= date('F j, Y, g:i a', $this->serviceInformation['service_added']); ?></td>
+							
+							<td class="tdHeading">Last outage:</td>
+							<td class="tdContent"><?= $this->serviceInformation['last_outage']; ?></td>														
+						</tr>
+						
+						<tr>
+							<td class="tdHeading">Uptime:</td>
+							<td class="tdContent"><?= $this->serviceInformation['uptime_percentage']; ?></td>
+							
+							<td class="tdHeading">Downtime:</td>
+							<td class="tdContent"><?= $this->serviceInformation['downtime_percentage']; ?></td>		
+		
+							<td class="tdHeading">Highest connect time:</td>
+							<td class="tdContent"><?= $this->serviceInformation['highest_latency']; ?></td>
+							
+							<td class="tdHeading">Lowest connect time:</td>
+							<td class="tdContent"><?= $this->serviceInformation['lowest_latency']; ?></td>													
+						</tr>		
+						
+						<tr>
+							<td class="tdHeading">Average connect time:</td>
+							<td class="tdContent"><?= $this->serviceInformation['avg_latency']; ?></td>
+							
+							<td class="tdHeading">Period measured:</td>
+							<td class="tdContent"><?= $this->serviceInformation['period_mesured']; ?></td>		
+		
+							<td class="tdHeading"></td>
+							<td class="tdContent"></td>
+							
+							<td class="tdHeading"></td>
+							<td class="tdContent"></td>													
+						</tr>									
+					</tbody>
+				</table>
+				
+				<!-- Start Service Latency Graph -->
+				<script type="text/javascript">
+				window.onload = function() {
+					var r = Raphael("serviceLatency");
+				
+					r.text(600, 10, '<?= $this->serviceInformation['service_name']; ?> Connection Time').attr({
+						font : "20px sans-serif"
+					});
+					
+					r.text(45, 100, 'Milliseconds').attr({
+						font : "15px sans-serif"
+					});
+		
+					r.text(600, 210, 'Service checks over last 24hrs').attr({
+						font : "15px sans-serif"
+					});
+								
+					<?php 
+						$yData='';
+						$xData='';
+						$x = 0; 
+						foreach($this->graphData as $data) {
+							
+							if (!empty($data['timeTaken'])) {
+								$yData .= $data['timeTaken'] . ', ';
+								$xData .= $x . ', ';
+							}
+							$x++;
+						} 
+						if ((!empty($xData)) && (!empty($xData))) {
+							echo 'r.linechart(120,10, 1000,200, [' . substr($xData, 0, -2) . '],[' . substr($yData, 0, -2) . '], {axis: "0 0 0 1", shade: true, colors:["#2b9ee7"]});';
+						} 
+					?>
+				};		
+				</script>
+				
+				<div id="serviceLatency"></div>
+				<!-- End service latency graph -->
+		</div>
+		<!-- End report content -->
+		
+	</div>		
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+	
+</div>	
