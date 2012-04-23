@@ -1,0 +1,31 @@
+Daemon Watch
+
+Daemon Watch is a web based system for monitoring the availabilty of services on remote hosts. Deamon Watch is built on the Zend Framework 
+and is intended to be easy to configure and use as well as being good to look at.
+
+---- Requirements ----
+
+Linux / Unix based server with: 
+
+PHP 5.3 or above
+MySQL
+
+Traceroute 
+
+---- Setup ----
+
+PLEASE NOTE: The program itself is still a work in progress.
+
+1. Import database dump into your MySQL installation
+
+2. Rename the configuration files application/configs/application.ini.default to application/configs/application.ini and 
+application/configs/email.ini.default to application/configs/application.ini changing the appropriate settings for your hosting environment.
+
+3. Login to application using the user account details:
+
+Username: test@test.com
+Password: password
+
+4. Add a job to your servers crontab that uses wget to check the needed services on a regular basis e.g
+
+5/* * * * * wget -q http://serverwatch/public/check-hosts/check-all-services
