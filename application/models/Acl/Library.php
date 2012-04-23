@@ -27,7 +27,8 @@ class Model_Acl_Library extends Zend_Acl {
         $this->add(new Zend_Acl_Resource('admin'));
         $this->add(new Zend_Acl_Resource('services'));
         $this->add(new Zend_Acl_Resource('statistics'));		
-        $this->add(new Zend_Acl_Resource('check-hosts'));		
+        $this->add(new Zend_Acl_Resource('check-hosts'));
+        $this->add(new Zend_Acl_Resource('tools'));			
     }
 
     protected function _addAllowPermissions() {
@@ -41,6 +42,7 @@ class Model_Acl_Library extends Zend_Acl {
 				->allow('users', 'services', array('add', 'view', 'edit', 'view-history', 'delete', 'toggle-checks'))	
 				->allow('users', 'statistics', array('service-stats'))															
 				->allow('users', 'auth', array('logout'))
+				->allow('users', 'tools', array('traceroute'))				
 				->allow('admin', 'user', array('home', 'change-password', 'index'))
 				->allow('admin', 'host', array('add', 'view', 'edit', 'view-all', 'delete'))	
 				->allow('admin', 'services', array('add', 'view', 'edit', 'view-history', 'delete', 'toggle-checks'))
